@@ -78,5 +78,11 @@ function renderMemes() {
 }
 
 function memeSelect(element){
-    console.log(element);
+    var elMemes = document.getElementById('memes');
+    var elAbout = document.getElementById('about');
+    var elContact = document.getElementById('contact');
+    console.log(elMemes);
+    elMemes.style.display = '';
+    elMemes.style.display = 'none';
+    
 }
