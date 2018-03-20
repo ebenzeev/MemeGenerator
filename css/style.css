@@ -22,6 +22,10 @@
     padding: 0;
 }
 
+.display-none{
+    display:none;
+}
+
 /*  */
 
 * {
@@ -86,6 +90,17 @@ footer {
 
 footer p {
     margin: 0;
+}
+
+.canvas-container{
+    height: 480px;
+    width: 460px;
+}
+
+.canvas{
+    border: 1px solid black;
+    height: 100%;
+    width: 100%;
 }
 
 @media (max-width: 1000px) {
