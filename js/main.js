@@ -1,6 +1,8 @@
 'use strict';
 
 console.log('Meme Generator');
+var canvasWidth = 460;
+var canvasHeight = 480;
 
 var gImgs = [{
     id: 1,
@@ -68,21 +70,46 @@ var gImgs = [{
     keywords: ['wat', 'wtf', 'women']
 }];
 
+
+function init(){
+    //hidding canvas element
+    var c = document.querySelector('.canvas');
+    c.classList.add('.display-none');
+    //rendering imgs grid
+    renderMemes();
+
+}
 function renderMemes() {
     var elGallary = document.querySelector('.meme-gallary');
     var strHtml = '';
     for (var i = 0; i < gImgs.length; i++) {
-        strHtml += '<img imgId="'+gImgs[i].id+'" src="'+gImgs[i].url+'" onclick="memeSelect(this)" alt="" srcset="">';
+        strHtml += '<img id="'+gImgs[i].id+'" src="'+gImgs[i].url+'" onclick="memeSelect(this)" alt="" srcset="">';
     }
     elGallary.innerHTML = strHtml;
 }
 
-function memeSelect(element){
+function memeSelect(el){
     var elMemes = document.getElementById('memes');
     var elAbout = document.getElementById('about');
     var elContact = document.getElementById('contact');
     console.log(elMemes);
     elMemes.style.display = '';
-    elMemes.style.display = 'none';
-    
+    elMemes.style.display = 'none'; 
+    var imgId = el.id;
+    imgId = parseInt(imgId);
+    var elIdx = gImgs.findIndex(function(emp){return emp.id === imgId});
+    createCanvas(elIdx);
+}
+
+function createCanvas(elIdx){
+    console.log('elIdx:',elIdx);
+    var c = document.querySelector('.canvas');
+    c.classList.remove('.display-none');
+    var ctx = c.getContext("2d");
+    var img = new Image;
+    //var imgIdx = gImgs.findIndex(function(emp){return emp.id === el.id});
+    img.src = gImgs[elIdx].url;
+    ctx.drawImage(img,1,1, canvasWidth*0.5, canvasHeight);
+    // ctx.width
+
 }
