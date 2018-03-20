@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.css">
-    <title>Document</title>
+    <title>Meme Generator</title>
 </head>
 
-<body>
+<body onload="renderMemes()">
     <header class="flex justify-center">
         <div class="nav-div flex align-item-center">
             <ul class="nav-ul flex justify-between clean-list ">
@@ -20,6 +20,7 @@
                     <a href="#">ABOUT</a>
                 </li>
             </ul>
+            <!-- The logo SVG, could make it work -->
             <svg id="SVGDoc" width="64" height="55" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
                 xmlns:avocode="https://avocode.com/" viewBox="0 0 64 55">
                 <defs></defs>
@@ -42,12 +43,9 @@
     </header>
 
     <main>
-        <div class="memes">
+        <div class="memes flex justify-center">
             <div class="meme-gallary">
-                <img src="img/aliens.jpg" alt="" srcset="">
-                <img src="img/bad-luck-brian.jpg" alt="" srcset="">
-                <img src="img/doge.jpg" alt="" srcset="">
-                <img src="img/facepalm.jpg" alt="" srcset="">
+                <!-- Here we render the memes -->
             </div>
         </div>
 

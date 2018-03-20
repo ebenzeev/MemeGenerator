@@ -72,14 +72,7 @@ function renderMemes() {
     var elGallary = document.querySelector('.meme-gallary');
     var strHtml = '';
     for (var i = 0; i < gImgs.length; i++) {
-        strHtml += '<tr>';
-        for (var j = 0; j < board[0].length; j++) {
-            var cell = board[i][j];
-            strHtml += '<td id="' + i + ',' + j + '" class="hide ' + i + '' + j + '" onmousedown="cellClicked(this, ' + i + ',' + j + ')" >' + cell + '</td>';
-        }
-        strHtml += '</tr>';
+        strHtml += '<img src="'+gImgs[i].url+'" alt="" srcset="">';
     }
-    elTable.innerHTML = strHtml;
-    elTable.board = board;
-
+    elGallary.innerHTML = strHtml;
 }
