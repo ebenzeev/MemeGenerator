@@ -72,7 +72,11 @@ function renderMemes() {
     var elGallary = document.querySelector('.meme-gallary');
     var strHtml = '';
     for (var i = 0; i < gImgs.length; i++) {
-        strHtml += '<img src="'+gImgs[i].url+'" alt="" srcset="">';
+        strHtml += '<img imgId="'+gImgs[i].id+'" src="'+gImgs[i].url+'" onclick="memeSelect(this)" alt="" srcset="">';
     }
     elGallary.innerHTML = strHtml;
+}
+
+function memeSelect(element){
+    console.log(element);
 }

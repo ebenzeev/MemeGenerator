@@ -64,6 +64,10 @@ header {
     object-fit: cover;
 }
 
+.meme-gallary img:hover{
+    opacity: 0.5;
+}
+
 .about {
     height: 340px;
     background-color: #2eb398;
