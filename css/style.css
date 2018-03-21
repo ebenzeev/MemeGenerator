@@ -43,6 +43,8 @@
     display:none;
 }
 
+
+
 /* FONTS */
 
 @font-face{
@@ -90,6 +92,29 @@ header img{
     width: 85%;
 }
 
+.search-cont>*{
+    margin: 10px 0 20px 0;
+}
+
+.search-cont button{
+    background-color: #2eb398;
+    border: #323232 2px solid;
+    padding: 5px 10px;
+}
+
+.search-cont input[type=text]{
+    border: none;
+    background-color: #2eb398;
+    color: white;
+    padding: 12px 20px;
+    width: 300px;
+    border-radius: 10px;
+
+}
+
+::placeholder {
+    color: white;
+}
 
 .memes {}
 
