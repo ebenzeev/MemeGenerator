@@ -26,6 +26,10 @@
     display:none;
 }
 
+.filter > p > .display-none {
+    display:none;
+}
+
 /*  */
 
 * {

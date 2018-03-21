@@ -43,6 +43,12 @@
     </header>
 
     <main>
+        <div class="filter">
+            <p class="filter-result display-none">Filter Results: <span class="filterd"></span></p>
+            <input type="text" id="filter" placeholder="Enter filter keyword">
+            <button type="submit" onclick="filterContatins()"> Filter</button>
+            <button type="submit" onclick="filterContatins('reset')"> Reset</button>
+        </div>
         <div class="memes flex justify-center" id="memes">
             <div class="meme-gallary">
                 <!-- Here we render the memes -->

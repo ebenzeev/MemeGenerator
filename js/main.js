@@ -71,45 +71,85 @@ var gImgs = [{
 }];
 
 
-function init(){
+function init() {
     //hidding canvas element
     var c = document.querySelector('.canvas');
-    c.classList.add('.display-none');
+    c.classList.add('display-none');
     //rendering imgs grid
-    renderMemes();
+    renderMemes(gImgs);
 
 }
-function renderMemes() {
+function renderMemes(imgs) {
+
     var elGallary = document.querySelector('.meme-gallary');
     var strHtml = '';
-    for (var i = 0; i < gImgs.length; i++) {
-        strHtml += '<img id="'+gImgs[i].id+'" src="'+gImgs[i].url+'" onclick="memeSelect(this)" alt="" srcset="">';
+    for (var i = 0; i < imgs.length; i++) {
+        strHtml += '<img id="' + imgs[i].id + '" src="' + imgs[i].url + '" onclick="memeSelect(this)" alt="" srcset="">';
     }
     elGallary.innerHTML = strHtml;
 }
 
-function memeSelect(el){
+function memeSelect(el) {
     var elMemes = document.getElementById('memes');
     var elAbout = document.getElementById('about');
     var elContact = document.getElementById('contact');
     console.log(elMemes);
     elMemes.style.display = '';
-    elMemes.style.display = 'none'; 
+    elMemes.style.display = 'none';
     var imgId = el.id;
     imgId = parseInt(imgId);
-    var elIdx = gImgs.findIndex(function(emp){return emp.id === imgId});
+    var elIdx = gImgs.findIndex(function (emp) { return emp.id === imgId });
     createCanvas(elIdx);
 }
 
-function createCanvas(elIdx){
-    console.log('elIdx:',elIdx);
+function createCanvas(elIdx) {
+    console.log('elIdx:', elIdx);
     var c = document.querySelector('.canvas');
-    c.classList.remove('.display-none');
+    c.classList.remove('display-none');
     var ctx = c.getContext("2d");
     var img = new Image;
     //var imgIdx = gImgs.findIndex(function(emp){return emp.id === el.id});
     img.src = gImgs[elIdx].url;
-    ctx.drawImage(img,1,1, canvasWidth*0.5, canvasHeight);
+    ctx.drawImage(img, 1, 1, canvasWidth * 0.5, canvasHeight);
     // ctx.width
 
 }
+
+function filterContatins(reset) {
+    //reset filter query
+    if (reset === 'reset') {
+        document.querySelector('.filterd').innerHTML = '';
+        document.querySelector('.filter-result').classList.add('display-none');
+        document.getElementById('filter').placeholder = 'Enter filter keyword';
+        document.getElementById('filter').value = '';
+        renderMemes(gImgs);
+    } else {
+        //validation empty query
+        var keywords = document.getElementById('filter').value;
+        if (keywords === '' || keywords === undefined) {
+            renderMemes(gImgs);
+            return;
+        }
+        else {
+            //creating an array from the string
+            keywords = keywords.split(' ');
+            var filteredImgs = [];
+            for (var i = 0; i < keywords.length; i++) {
+                var keyword = keywords[i].toLowerCase();
+                gImgs.forEach(function (element, idx) {
+                    if (element.keywords.includes(keyword)) filteredImgs.push(gImgs[idx]);
+                })
+            }
+            //telling the user for the results of the query
+            document.querySelector('.filter-result').classList.remove('display-none');
+            document.querySelector('.filterd').innerHTML = filteredImgs.length + ' images were found';
+           //in-case of no results found
+            if (filteredImgs.length === 0) {
+                document.querySelector('.filterd').innerHTML = 'No Results Were Found, try again';
+            }
+        }
+        renderMemes(filteredImgs);
+        // console.log('the filtered imgs array is: ', filteredImgs);
+    }
+}
+
