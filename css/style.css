@@ -132,9 +132,12 @@ canvas{
 
 } */
 
+
 .img-container{
-    height:206px;
-    width:105px;
+    background-size: cover;
+    background-position: center;
+    height:220px;
+    width:180px;
 }
 
 .member{
@@ -148,13 +151,14 @@ canvas{
     margin: 0;
 }
 
-.memeber-details > h1 {
+div > h1 {
     color: #d7fcf5;
     font-family: "Maven Pro Regular";
     font-size: 30px;
+    margin: 0 0 8px 0;
 }
 
-.memeber-details > h3 {
+div > h3 {
     color: #20816d;
     font-family: "Maven Pro Regular";
     font-size: 18px;
@@ -163,6 +167,7 @@ canvas{
     color: #d7fcf5;
     font-family: Lato;
     font-size: 12px;
+    margin-bottom: 30px;
 }
 
 
