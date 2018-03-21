@@ -90,6 +90,7 @@ header img{
 .hr1{
     border: 2px solid #e4e9eb;
     width: 85%;
+    margin: 30px auto 30px;
 }
 
 .search-cont>*{
@@ -142,6 +143,66 @@ header img{
 .about {
     height: 100%;
     background-color: #2eb398;
+}
+
+.about-container{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 85%;
+}
+
+.person{
+}
+
+.profile-content-cont{
+    width: 60%;
+    position: relative;
+}
+
+.profile-content-cont *{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.profile-content-cont p{
+    margin-top: 20px;
+}
+
+.social-icons{
+    right: 0;
+    bottom: 0;
+    position: absolute;
+}
+
+.social-icons * {
+    padding: 3px;
+    font-size: 25px;
+    color: white;
+}
+
+.social-icons #facebook{
+        background-color: #3b5998;
+}
+.social-icons #github{
+        background-color: #333;
+}
+.social-icons #linkedin{
+        background-color: #0077b5;
+}
+.social-icons #twitter{
+        background-color: #1da1f2;
+}
+
+.profile-img-cont {
+
+}
+
+.profile-img-cont img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border: white 3px solid;
+    border-radius: 50%;
 }
 
 .contact {
