@@ -1,7 +1,16 @@
 /* HELPERS */
 
+.container{
+    width: 780px;
+    margin: 0 auto 60px auto;
+}
+
 .flex {
     display: flex;
+}
+
+.flex-column{
+    flex-direction: column;
 }
 
 .justify-center {
@@ -81,7 +90,7 @@ header {
 }
 
 .about {
-    height: 340px;
+    height: 100%;
     background-color: #2eb398;
 }
 
@@ -108,6 +117,55 @@ canvas{
     height: 100%;
     width: 100%;
 }
+
+/* css for avout section */
+
+/* .team-img {
+    height: 200px;
+    width: auto;
+
+} */
+
+.img-container{
+    height:206px;
+    width:105px;
+}
+
+.member{
+    padding-top:68px;
+}
+
+.memeber-details{
+    width: 580px;
+}
+.memeber-details > h1, h3, p{
+    margin: 0;
+}
+
+.memeber-details > h1 {
+    color: #d7fcf5;
+    font-family: "Maven Pro Regular";
+    font-size: 30px;
+}
+
+.memeber-details > h3 {
+    color: #20816d;
+    font-family: "Maven Pro Regular";
+    font-size: 18px;
+}
+.memeber-details > p {
+    color: #d7fcf5;
+    font-family: Lato;
+    font-size: 12px;
+}
+
+
+
+
+
+
+
+
 
 @media (max-width: 1000px) {
     .meme-gallary {
