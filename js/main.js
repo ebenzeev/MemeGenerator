@@ -82,6 +82,8 @@ function init() {
     // var c = document.querySelector('.canvas');
     // c.classList.add('display-none');
     //rendering imgs grid
+    var elCanvas = document.querySelector('.canvas-container');
+    elCanvas.style.display = 'none';
     renderMemes(gImgs);
 
 }
@@ -100,8 +102,11 @@ function memeSelect(el) {
     var elMemes = document.getElementById('memes');
     var elAbout = document.getElementById('about');
     var elContact = document.getElementById('contact');
-    elMemes.style.display = '';
+    var elCanvas = document.querySelector('.canvas-container');
+    elCanvas.style.display = '';
     elMemes.style.display = 'none';
+    elAbout.style.display = 'none';
+    elContact.style.display = 'none';
     var imgId = el.id;
     imgId = parseInt(imgId);
     var elIdx = gImgs.findIndex(function (emp) {
