@@ -158,8 +158,8 @@ function createCanvas(elIdx) {
 }
 
 function drawMeme() {
-    
-    console.log('img:', img);
+
+    // console.log('img:', img);
     gCanvas = document.getElementById('memecanvas');
     var ctx = gCanvas.getContext('2d');
     gCanvas.width = memeSize;
@@ -173,7 +173,7 @@ function drawMeme() {
     ctx.drawImage(img, 0, 0, memeSize, memeSize);
 
     ctx.lineWidth = 4;
-    ctx.font = gMeme.txts[0].size +'pt sans-serif';
+    ctx.font = gMeme.txts[0].size + 'pt sans-serif';
     ctx.strokeStyle = 'black';
     ctx.fillStyle = gMeme.txts[0].color;
     ctx.textAlign = gMeme.txts[0].align;
@@ -181,7 +181,19 @@ function drawMeme() {
 
     var text1 = document.getElementById('top-text').value;
     text1 = text1.toUpperCase();
-    var x = memeSize / 2;
+    switch (gMeme.txts[0].align) {
+        case 'center':
+            var x = memeSize / 2;
+            break;
+        case 'left':
+            var x = 0.5;
+            break;
+        case 'right':
+            var x = memeSize - 5;
+            break;
+        default:
+            var x = memeSize / 2;;
+    }
     var y = 0;
 
     wrapText(ctx, text1, x, y, 300, 28, false);
@@ -197,7 +209,7 @@ function drawMeme() {
 
 function wrapText(context, text, x, y, maxWidth, lineHeight, fromBottom) {
     var pushMethod = (fromBottom) ? 'unshift' : 'push';
-    lineHeight = (fromBottom) ? -lineHeight : lineHeight;
+    lineHeight = (fromBottom) ? -lineHeight*1.2 : lineHeight*1.2;
     var lines = [];
     var y = y;
     var line = '';
@@ -254,12 +266,35 @@ function filterContatins(reset) {
             }
         }
         renderMemes(filteredImgs);
-        // console.log('the filtered imgs array is: ', filteredImgs);
     }
 }
 
-function increaseFontSize(){
+function increaseFontSize() {
     gMeme.txts[0].size++;
     drawMeme();
-        
+}
+
+function decreaseFontSize() {
+    gMeme.txts[0].size--;
+    drawMeme();
+}
+
+function alignLeft() {
+    gMeme.txts[0].align = 'left';
+    drawMeme();
+}
+
+function alignRight() {
+    gMeme.txts[0].align = 'right';
+    drawMeme();
+}
+
+function alignCenter() {
+    gMeme.txts[0].align = 'center';
+    drawMeme();
+}
+
+function fontColor(){
+    gMeme.txts[0].color = document.querySelector('.font-color').value;
+    drawMeme();
 }
