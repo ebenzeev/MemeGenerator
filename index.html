@@ -22,16 +22,7 @@
                 </li>
             </ul>
             <!-- The SVG logo, couldnt make it work -->
-            <svg id="SVGDoc" width="64" height="55" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
-                xmlns:avocode="https://avocode.com/" viewBox="0 0 64 55">
-                <defs></defs>
-                <desc>Generated with Avocode.</desc>
-                <g transform="matrix(1,0,0,1,-477,-10)">
-                    <g>
-                        <title>Logo</title>
-                    </g>
-                </g>
-            </svg>
+            <img src="img/logo.png" alt="" srcset="">
             <ul class="nav-ul flex justify-between clean-list ">
                 <li>
                     <a href="#">BLOG</a>
@@ -44,13 +35,20 @@
     </header>
 
     <main>
-        <div class="filter">
+
+        <hr class="hr1">
+
+        <div class="filter flex">
             <p class="filter-result display-none">Filter Results:
                 <span class="filterd"></span>
             </p>
-            <input type="text" id="filter" placeholder="Enter filter keyword">
-            <button type="submit" onclick="filterContatins()"> Filter</button>
-            <button type="submit" onclick="filterContatins('reset')"> Reset</button>
+
+
+            <input type="text" class="search-input" id="filter" placeholder="Enter filter keyword">
+            <button type="submit" class="search-btn" onclick="filterContatins()"> Filter</button>
+            <button type="submit" class="search-btn" onclick="filterContatins('reset')"> Reset</button>
+
+
         </div>
         <div class="memes flex justify-center" id="memes">
             <div class="meme-gallary">
@@ -103,13 +101,13 @@
         <div class="about" id="about">
             <div class="container">
                 <div class="member flex justify-between">
-                        <div class="img-container" style="background-image: url(img/team/1.jpg)">
-                </div>
-                    <div class="memeber-details flex flex-column justify-between">
-                            <div class="personal-details flex flex-column">
-                        <h1>Eyal Ben Zeev</h1>
-                        <h3>Full-Stack Engineer</h3>
+                    <div class="img-container" style="background-image: url(img/team/1.jpg)">
                     </div>
+                    <div class="memeber-details flex flex-column justify-between">
+                        <div class="personal-details flex flex-column">
+                            <h1>Eyal Ben Zeev</h1>
+                            <h3>Full-Stack Engineer</h3>
+                        </div>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat quam a ad corrupti. Cupiditate aliquam
                             fuga expedita, repudiandae, sapiente cumque non, earum ea mollitia totam suscipit et eius distinctio
                             modi.

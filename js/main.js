@@ -241,6 +241,16 @@ function filterContatins(reset) {
         document.getElementById('filter').placeholder = 'Enter filter keyword';
         document.getElementById('filter').value = '';
         renderMemes(gImgs);
+
+        var elMemes = document.getElementById('memes');
+        var elAbout = document.getElementById('about');
+        var elContact = document.getElementById('contact');
+        var elCanvas = document.querySelector('.canvas-container');
+        elCanvas.style.display = 'none';
+        elMemes.style.display = '';
+        elAbout.style.display = '';
+        elContact.style.display = '';
+        /////
     } else {
         //validation empty query
         var keywords = document.getElementById('filter').value;
