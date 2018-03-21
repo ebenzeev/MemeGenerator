@@ -68,14 +68,16 @@ var gImgs = [{
 
 var gMeme = {
     selectedImgId: null,
-    txts: {
+    txts: [{
         line: 'I never eat Falafel',
         size: 20,
         align: 'center',
         color: 'red'
-    }
+    }]
 }
 
+var memeSize = 300;
+var gCanvas;
 
 function init() {
     //hidding canvas element
@@ -109,11 +111,11 @@ function memeSelect(el) {
     elContact.style.display = 'none';
     var imgId = el.id;
     imgId = parseInt(imgId);
-    var elIdx = gImgs.findIndex(function (emp) {
+    gMeme.selectedImgId = gImgs.findIndex(function (emp) {
         return emp.id === imgId
     });
-    gMeme.selectedImgId=elIdx;
-    createCanvas(elIdx);
+    // gMeme.selectedImgId=elIdx;
+    createCanvas(gMeme.selectedImgId);
 }
 
 // function createCanvas(elIdx) {
@@ -129,96 +131,93 @@ function memeSelect(el) {
 // }
 
 function createCanvas(elIdx) {
-    var memeSize = 300;
-
-    var canvas = document.getElementById('memecanvas');
-    var ctx = canvas.getContext('2d');
-
+    // gMeme.selectedImgId = elIdx;
+    // var memeSize = 300;
+    // gCanvas = document.getElementById('memecanvas');
+    // var ctx = gCanvas.getContext('2d');
 
     // Set the text style to that to which we are accustomed
-
-
-
-    canvas.width = memeSize;
-    canvas.height = memeSize;
+    // gCanvas.width = memeSize;
+    // gCanvas.height = memeSize;
 
     //  Grab the nodes
-
-    var img = new Image;
-    img.src = gImgs[elIdx].url;
+    // var img = new Image;
+    // img.src = gImgs[gMeme.selectedImgId].url;
     var topText = document.getElementById('top-text');
     var bottomText = document.getElementById('bottom-text');
 
+    drawMeme();
 
-    drawMeme()
+    topText.addEventListener('keydown', drawMeme);
+    topText.addEventListener('keyup', drawMeme);
+    topText.addEventListener('change', drawMeme);
 
-    topText.addEventListener('keydown', drawMeme)
-    topText.addEventListener('keyup', drawMeme)
-    topText.addEventListener('change', drawMeme)
+    bottomText.addEventListener('keydown', drawMeme);
+    bottomText.addEventListener('keyup', drawMeme);
+    bottomText.addEventListener('change', drawMeme);
+}
 
-    bottomText.addEventListener('keydown', drawMeme)
-    bottomText.addEventListener('keyup', drawMeme)
-    bottomText.addEventListener('change', drawMeme)
+function drawMeme() {
+    
+    console.log('img:', img);
+    gCanvas = document.getElementById('memecanvas');
+    var ctx = gCanvas.getContext('2d');
+    gCanvas.width = memeSize;
+    gCanvas.height = memeSize;
+    var img = new Image;
+    img.src = gImgs[gMeme.selectedImgId].url;
+    var topText = document.getElementById('top-text');
+    var bottomText = document.getElementById('bottom-text');
+    ctx.clearRect(0, 0, gCanvas.width, gCanvas.height);
 
-    function drawMeme() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(img, 0, 0, memeSize, memeSize);
 
-        ctx.drawImage(img, 0, 0, memeSize, memeSize);
+    ctx.lineWidth = 4;
+    ctx.font = gMeme.txts[0].size +'pt sans-serif';
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = gMeme.txts[0].color;
+    ctx.textAlign = gMeme.txts[0].align;
+    ctx.textBaseline = 'top';
 
-        ctx.lineWidth = 4;
-        ctx.font = gMeme.txts.size +'pt sans-serif';
-        ctx.strokeStyle = 'black';
-        ctx.fillStyle = 'white';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'top';
+    var text1 = document.getElementById('top-text').value;
+    text1 = text1.toUpperCase();
+    var x = memeSize / 2;
+    var y = 0;
 
-        var text1 = document.getElementById('top-text').value;
-        text1 = text1.toUpperCase();
-        var x = memeSize / 2;
-        var y = 0;
+    wrapText(ctx, text1, x, y, 300, 28, false);
 
-        wrapText(ctx, text1, x, y, 300, 28, false);
+    ctx.textBaseline = 'bottom';
+    var text2 = document.getElementById('bottom-text').value;
+    text2 = text2.toUpperCase();
+    y = memeSize;
 
-        ctx.textBaseline = 'bottom';
-        var text2 = document.getElementById('bottom-text').value;
-        text2 = text2.toUpperCase();
-        y = memeSize;
+    wrapText(ctx, text2, x, y, 300, 28, true);
 
-        wrapText(ctx, text2, x, y, 300, 28, true);
+}
 
+function wrapText(context, text, x, y, maxWidth, lineHeight, fromBottom) {
+    var pushMethod = (fromBottom) ? 'unshift' : 'push';
+    lineHeight = (fromBottom) ? -lineHeight : lineHeight;
+    var lines = [];
+    var y = y;
+    var line = '';
+    var words = text.split(' ');
+    for (var n = 0; n < words.length; n++) {
+        var testLine = line + ' ' + words[n];
+        var metrics = context.measureText(testLine);
+        var testWidth = metrics.width;
+
+        if (testWidth > maxWidth) {
+            lines[pushMethod](line);
+            line = words[n] + ' ';
+        } else {
+            line = testLine;
+        }
     }
-
-    function wrapText(context, text, x, y, maxWidth, lineHeight, fromBottom) {
-
-        var pushMethod = (fromBottom) ? 'unshift' : 'push';
-
-        lineHeight = (fromBottom) ? -lineHeight : lineHeight;
-
-        var lines = [];
-        var y = y;
-        var line = '';
-        var words = text.split(' ');
-
-        for (var n = 0; n < words.length; n++) {
-            var testLine = line + ' ' + words[n];
-            var metrics = context.measureText(testLine);
-            var testWidth = metrics.width;
-
-            if (testWidth > maxWidth) {
-                lines[pushMethod](line);
-                line = words[n] + ' ';
-            } else {
-                line = testLine;
-            }
-        }
-        lines[pushMethod](line);
-
-        for (var k in lines) {
-            context.strokeText(lines[k], x, y + lineHeight * k);
-            context.fillText(lines[k], x, y + lineHeight * k);
-        }
-
-
+    lines[pushMethod](line);
+    for (var k in lines) {
+        context.strokeText(lines[k], x, y + lineHeight * k);
+        context.fillText(lines[k], x, y + lineHeight * k);
     }
 }
 
@@ -260,6 +259,7 @@ function filterContatins(reset) {
 }
 
 function increaseFontSize(){
-    gMeme.txts.size++;
+    gMeme.txts[0].size++;
+    drawMeme();
         
 }
