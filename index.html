@@ -44,7 +44,9 @@
 
     <main>
         <div class="filter">
-            <p class="filter-result display-none">Filter Results: <span class="filterd"></span></p>
+            <p class="filter-result display-none">Filter Results:
+                <span class="filterd"></span>
+            </p>
             <input type="text" id="filter" placeholder="Enter filter keyword">
             <button type="submit" onclick="filterContatins()"> Filter</button>
             <button type="submit" onclick="filterContatins('reset')"> Reset</button>
@@ -54,18 +56,26 @@
                 <!-- Here we render the memes -->
             </div>
         </div>
-        <div class="canvas-container">
-            <canvas class="canvas">
-                
+
+
+
+        <div class="canvas-container flex justify-around">
+            <canvas id="memecanvas">
+                Sorry, canvas not supported
             </canvas>
+            <div class="canvas-inputs">
+                <input type='text' value='omg' id='top-text' />
+                <input type='text' value='this is totally amazingg' id='bottom-text' />
+            </div>
         </div>
 
-        <div class="about" id="about">
 
+
+
+        <div class="about" id="about">
         </div>
 
         <div class="contact" id="contact">
-
         </div>
     </main>
 
@@ -75,6 +85,7 @@
         </div>
     </footer>
     <script src="js/main.js"></script>
+    <script src="js/canvas.js"></script>
 </body>
 
 </html>

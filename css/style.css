@@ -12,6 +12,10 @@
     justify-content: space-between;
 }
 
+.justify-around{
+    justify-content: space-around;
+}
+
 .align-item-center {
     align-items: center;
 }
@@ -97,11 +101,9 @@ footer p {
 }
 
 .canvas-container{
-    height: 480px;
-    width: 460px;
 }
 
-.canvas{
+canvas{
     border: 1px solid black;
     height: 100%;
     width: 100%;
