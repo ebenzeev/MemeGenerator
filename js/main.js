@@ -102,6 +102,7 @@ function memeSelect(el) {
         return emp.id === imgId
     });
     createCanvas(elIdx);
+    console.log("idx is:"+ elIdx)
 }
 
 // function createCanvas(elIdx) {
@@ -120,7 +121,7 @@ function createCanvas(elIdx) {
     var memeSize = 300;
 
     var canvas = document.getElementById('memecanvas');
-    ctx = canvas.getContext('2d');
+    var ctx = canvas.getContext('2d');
 
 
     // Set the text style to that to which we are accustomed
@@ -131,14 +132,16 @@ function createCanvas(elIdx) {
     canvas.height = memeSize;
 
     //  Grab the nodes
-    var img = gImgs[elIdx].url;
+
+    var img = new Image;
+    img.src = gImgs[elIdx].url;
     var topText = document.getElementById('top-text');
     var bottomText = document.getElementById('bottom-text');
 
     // When the image has loaded...
-    img.onload = function () {
+    // img.onload = function () {
         drawMeme()
-    }
+    // }
 
     topText.addEventListener('keydown', drawMeme)
     topText.addEventListener('keyup', drawMeme)
@@ -162,8 +165,8 @@ function createCanvas(elIdx) {
 
         var text1 = document.getElementById('top-text').value;
         text1 = text1.toUpperCase();
-        x = memeSize / 2;
-        y = 0;
+        var x = memeSize / 2;
+        var y = 0;
 
         wrapText(ctx, text1, x, y, 300, 28, false);
 
