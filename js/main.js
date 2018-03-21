@@ -68,12 +68,12 @@ var gImgs = [{
 
 var gMeme = {
     selectedImgId: null,
-    txts: [{
+    txts: {
         line: 'I never eat Falafel',
         size: 20,
         align: 'center',
         color: 'red'
-    }]
+    }
 }
 
 
@@ -149,10 +149,8 @@ function createCanvas(elIdx) {
     var topText = document.getElementById('top-text');
     var bottomText = document.getElementById('bottom-text');
 
-    // When the image has loaded...
-    // img.onload = function () {
+
     drawMeme()
-    // }
 
     topText.addEventListener('keydown', drawMeme)
     topText.addEventListener('keyup', drawMeme)
@@ -168,7 +166,7 @@ function createCanvas(elIdx) {
         ctx.drawImage(img, 0, 0, memeSize, memeSize);
 
         ctx.lineWidth = 4;
-        ctx.font = '20pt sans-serif';
+        ctx.font = gMeme.txts.size +'pt sans-serif';
         ctx.strokeStyle = 'black';
         ctx.fillStyle = 'white';
         ctx.textAlign = 'center';
@@ -259,4 +257,9 @@ function filterContatins(reset) {
         renderMemes(filteredImgs);
         // console.log('the filtered imgs array is: ', filteredImgs);
     }
+}
+
+function increaseFontSize(){
+    gMeme.txts.size++;
+        
 }
