@@ -1,7 +1,5 @@
 'use strict';
 
-console.log('Meme Generator');
-
 var gImgs = [{
     id: 1,
     url: 'img/aliens.jpg',
@@ -68,13 +66,22 @@ var gImgs = [{
     keywords: ['wat', 'wtf', 'women']
 }];
 
+var gMeme = {
+    selectedImgId: null,
+    txts: [{
+        line: 'I never eat Falafel',
+        size: 20,
+        align: 'left',
+        color: 'red'
+    }]
+}
+
 
 function init() {
     //hidding canvas element
     // var c = document.querySelector('.canvas');
     // c.classList.add('display-none');
     //rendering imgs grid
-    console.log("bla bal");
     renderMemes(gImgs);
 
 }
@@ -93,7 +100,6 @@ function memeSelect(el) {
     var elMemes = document.getElementById('memes');
     var elAbout = document.getElementById('about');
     var elContact = document.getElementById('contact');
-    console.log(elMemes);
     elMemes.style.display = '';
     elMemes.style.display = 'none';
     var imgId = el.id;
@@ -101,8 +107,8 @@ function memeSelect(el) {
     var elIdx = gImgs.findIndex(function (emp) {
         return emp.id === imgId
     });
+    gMeme.selectedImgId=elIdx;
     createCanvas(elIdx);
-    console.log("idx is:"+ elIdx)
 }
 
 // function createCanvas(elIdx) {
@@ -140,7 +146,7 @@ function createCanvas(elIdx) {
 
     // When the image has loaded...
     // img.onload = function () {
-        drawMeme()
+    drawMeme()
     // }
 
     topText.addEventListener('keydown', drawMeme)
