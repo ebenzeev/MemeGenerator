@@ -68,22 +68,13 @@ var gImgs = [{
 
 var gMeme = {
     selectedImgId: null,
-    txts: [{
-        line: 'I never eat Falafel',
-        size: 20,
-        align: 'center',
-        color: 'red'
-    }]
+    txts: []
 }
 
 var memeSize = 300;
 var gCanvas;
 
 function init() {
-    //hidding canvas element
-    // var c = document.querySelector('.canvas');
-    // c.classList.add('display-none');
-    //rendering imgs grid
     renderCommon();
     var elCanvas = document.querySelector('.canvas-container');
     elCanvas.style.display = 'none';
@@ -102,7 +93,6 @@ function renderMemes(imgs) {
 }
 
 function memeSelect(el) {
-    console.log('el:', el);
     var elMemes = document.getElementById('memes');
     var elAbout = document.getElementById('about');
     var elContact = document.getElementById('contact');
@@ -111,53 +101,19 @@ function memeSelect(el) {
     elMemes.style.display = 'none';
     elAbout.style.display = 'none';
     elContact.style.display = 'none';
-        var imgId = el.id;
-        imgId = parseInt(imgId);
+    var imgId = el.id;
+    imgId = parseInt(imgId);
     if (gMeme.selectedImgId === 'custom') return;
     gMeme.selectedImgId = gImgs.findIndex(function (emp) {
         return emp.id === imgId
     });
-    // gMeme.selectedImgId=elIdx;
     createCanvas(gMeme.selectedImgId);
+
 }
 
-// function createCanvas(elIdx) {
-//     console.log('elIdx:', elIdx);
-//     var c = document.getElementById('memecanvas');
-//     c.classList.remove('display-none');
-//     var ctx = c.getContext("2d");
-//     var img = new Image;
-//     img.src = gImgs[elIdx].url;
-//     ctx.drawImage(img, 1, 1, canvasWidth, canvasHeight);
-//     // ctx.width
-
-// }
-
 function createCanvas(elIdx) {
-    // gMeme.selectedImgId = elIdx;
-    // var memeSize = 300;
-    // gCanvas = document.getElementById('memecanvas');
-    // var ctx = gCanvas.getContext('2d');
-
-    // Set the text style to that to which we are accustomed
-    // gCanvas.width = memeSize;
-    // gCanvas.height = memeSize;
-
-    //  Grab the nodes
-    // var img = new Image;
-    // img.src = gImgs[gMeme.selectedImgId].url;
-    var topText = document.getElementById('top-text');
-    var bottomText = document.getElementById('bottom-text');
-
+    createEditBox();
     drawMeme();
-
-    topText.addEventListener('keydown', drawMeme);
-    topText.addEventListener('keyup', drawMeme);
-    topText.addEventListener('change', drawMeme);
-
-    bottomText.addEventListener('keydown', drawMeme);
-    bottomText.addEventListener('keyup', drawMeme);
-    bottomText.addEventListener('change', drawMeme);
 }
 
 function drawMeme(url) {
@@ -174,45 +130,51 @@ function drawMeme(url) {
         var ctx = gCanvas.getContext('2d');
         gCanvas.width = memeSize;
         gCanvas.height = memeSize;
-        var topText = document.getElementById('top-text');
-        var bottomText = document.getElementById('bottom-text');
+        // var bottomText = document.getElementById('bottom-text');
         ctx.clearRect(0, 0, gCanvas.width, gCanvas.height);
 
         ctx.drawImage(img, 0, 0, memeSize, memeSize);
 
         ctx.lineWidth = 4;
-        ctx.font = gMeme.txts[0].size + 'pt sans-serif';
         ctx.strokeStyle = 'black';
-        ctx.fillStyle = gMeme.txts[0].color;
-        ctx.textAlign = gMeme.txts[0].align;
         ctx.textBaseline = 'top';
+        for (var i = 0; i < gMeme.txts.length; i++) {
+            var txt = document.getElementById('top-text-'+i);
+            txt.addEventListener('keydown', drawMeme);
+            txt.addEventListener('keyup', drawMeme);
+            txt.addEventListener('change', drawMeme);
+            ctx.font = gMeme.txts[i].size + 'pt sans-serif';
+            ctx.fillStyle = gMeme.txts[i].color;
+            ctx.textAlign = gMeme.txts[i].align;
+            document.querySelector('.font-color-'+i+'').value = gMeme.txts[i].color;
+            var text1 = document.getElementById('top-text-' + i).value;
+            gMeme.txts[i].line = text1;
+            text1 = text1.toUpperCase();
+            EventListner(text1,i);
+            var y = 50*i;
+            switch (gMeme.txts[i].align) {
+                case 'center':
+                    var x = memeSize / 2;
+                    break;
+                case 'left':
+                    var x = 0.5;
+                    break;
+                case 'right':
+                    var x = memeSize - 5;
+                    break;
+                default:
+                    var x = memeSize / 2;;
+            }
 
-        var text1 = document.getElementById('top-text').value;
-        text1 = text1.toUpperCase();
-        switch (gMeme.txts[0].align) {
-            case 'center':
-                var x = memeSize / 2;
-                break;
-            case 'left':
-                var x = 0.5;
-                break;
-            case 'right':
-                var x = memeSize - 5;
-                break;
-            default:
-                var x = memeSize / 2;;
+            wrapText(ctx, text1, x, y, 300, 28, false);
         }
-        var y = 0;
 
-        wrapText(ctx, text1, x, y, 300, 28, false);
-
-        ctx.textBaseline = 'bottom';
-        var text2 = document.getElementById('bottom-text').value;
-        text2 = text2.toUpperCase();
-        y = memeSize;
-
-        wrapText(ctx, text2, x, y, 300, 28, true);
-
+        function EventListner(txt,idx){
+            var txt = document.getElementById('top-text-'+idx);
+            txt.addEventListener('keydown', drawMeme);
+            txt.addEventListener('keyup', drawMeme);
+            txt.addEventListener('change', drawMeme);
+        }
     }
 }
 
@@ -244,7 +206,6 @@ function wrapText(context, text, x, y, maxWidth, lineHeight, fromBottom) {
 
 function filterContatins(val) {
     var filteredImgs = [];
-    console.log('valll:', val);
     //reset filter query
     if (val) {
 
@@ -277,7 +238,6 @@ function filterContatins(val) {
         }
     } else {
         // if (val === undefined) {
-        console.log('val', val);
         //validation empty query
         var keywords = document.getElementById('filter').value;
         if (keywords === '' || keywords === undefined) {
@@ -312,14 +272,12 @@ function mostCommon() {
             allKeywords.push(arr);
         })
     })
-    console.log('allkeywords:', allKeywords);
     var commonMap = allKeywords.reduce(function (acc, key) {
         if (key in acc) {
             acc[key]++
         } else acc[key] = 1;
         return acc;
     }, {})
-    console.log('allkeywords map:', commonMap);
     return commonMap;
 }
 
@@ -333,7 +291,6 @@ function renderCommon() {
         str += `<p class="common" style= "font-size: ${commonMap[commonItems[i]] * mult}px" onclick="filterContatins('${commonItems[i]}')"> ${commonItems[i]} </p>
         `
     }
-    console.log('str:', str);
     document.querySelector('.most-common').innerHTML = str;
 }
 
@@ -350,32 +307,76 @@ function addImgUrl(url) {
     drawMeme(url);
 }
 
-function increaseFontSize() {
-    gMeme.txts[0].size++;
+function increaseFontSize(Idx) {
+    gMeme.txts[Idx].size++;
     drawMeme();
 }
 
-function decreaseFontSize() {
-    gMeme.txts[0].size--;
+function decreaseFontSize(Idx) {
+    gMeme.txts[Idx].size--;
     drawMeme();
 }
 
-function alignLeft() {
-    gMeme.txts[0].align = 'left';
+function alignLeft(Idx) {
+    gMeme.txts[Idx].align = 'left';
     drawMeme();
 }
 
-function alignRight() {
-    gMeme.txts[0].align = 'right';
+function alignRight(Idx) {
+    gMeme.txts[Idx].align = 'right';
     drawMeme();
 }
 
-function alignCenter() {
-    gMeme.txts[0].align = 'center';
+function alignCenter(Idx) {
+    gMeme.txts[Idx].align = 'center';
     drawMeme();
 }
 
-function fontColor() {
-    gMeme.txts[0].color = document.querySelector('.font-color').value;
+function fontColor(elInput , Idx) {
+    gMeme.txts[Idx].color = elInput.value;
+    drawMeme();
+}
+
+function createEditBox() {
+    var emptyTxtObj = { line: 'Your Meme', size: 20, align: 'center', color: '#000000' };
+    gMeme.txts.push(emptyTxtObj)
+    // var boxIdx = gMeme.txts.length;
+    var str = '';
+    for (var i = 0; i < gMeme.txts.length; i++) {
+        str += `<div class="canvas-inputs flex flex-column">
+        <input type='text' value='${gMeme.txts[i].line}' id='top-text-${i}' />
+        <div class="inputs-buttons">
+        <button>
+        <i class="fas fa-trash-alt"></i>
+        </button>
+        <button onclick="selectFont(${i})">
+        <i class="fas fa-font"></i>
+        </button>
+        <button onclick="moveDown(${i})">
+        <i class="fas fa-arrow-down"></i>
+        </button>
+        <button onclick="moveUp(${i})">
+        <i class="fas fa-arrow-up"></i>
+        </button>
+        <input type="color" class="font-color-${i}" onchange="fontColor(this ,${i})">
+        <button onclick="increaseFontSize(${i})">
+        <i class="fas fa-plus"></i>
+        </button>
+        <button onclick="decreaseFontSize(${i})">
+        <i class="fas fa-minus"></i>
+        </button>
+        <button onclick="alignLeft(${i})">
+        <i class="fas fa-align-left"></i>
+        </button>
+        <button onclick="alignCenter(${i})">
+        <i class="fas fa-align-center"></i>
+        </button>
+        <button onclick="alignRight(${i})">
+        <i class="fas fa-align-right"></i>
+        </button>
+        </div>
+        </div>`
+    }
+    document.getElementById('edit-box').innerHTML = str;
     drawMeme();
 }
