@@ -101,6 +101,7 @@ function renderMemes(imgs) {
 }
 
 function memeSelect(el) {
+    console.log('el:', el);
     var elMemes = document.getElementById('memes');
     var elAbout = document.getElementById('about');
     var elContact = document.getElementById('contact');
@@ -109,8 +110,9 @@ function memeSelect(el) {
     elMemes.style.display = 'none';
     elAbout.style.display = 'none';
     elContact.style.display = 'none';
-    var imgId = el.id;
-    imgId = parseInt(imgId);
+        var imgId = el.id;
+        imgId = parseInt(imgId);
+    if (gMeme.selectedImgId === 'custom') return;
     gMeme.selectedImgId = gImgs.findIndex(function (emp) {
         return emp.id === imgId
     });
@@ -157,54 +159,60 @@ function createCanvas(elIdx) {
     bottomText.addEventListener('change', drawMeme);
 }
 
-function drawMeme() {
-
-    // console.log('img:', img);
-    gCanvas = document.getElementById('memecanvas');
-    var ctx = gCanvas.getContext('2d');
-    gCanvas.width = memeSize;
-    gCanvas.height = memeSize;
+function drawMeme(url) {
     var img = new Image;
-    img.src = gImgs[gMeme.selectedImgId].url;
-    var topText = document.getElementById('top-text');
-    var bottomText = document.getElementById('bottom-text');
-    ctx.clearRect(0, 0, gCanvas.width, gCanvas.height);
-
-    ctx.drawImage(img, 0, 0, memeSize, memeSize);
-
-    ctx.lineWidth = 4;
-    ctx.font = gMeme.txts[0].size + 'pt sans-serif';
-    ctx.strokeStyle = 'black';
-    ctx.fillStyle = gMeme.txts[0].color;
-    ctx.textAlign = gMeme.txts[0].align;
-    ctx.textBaseline = 'top';
-
-    var text1 = document.getElementById('top-text').value;
-    text1 = text1.toUpperCase();
-    switch (gMeme.txts[0].align) {
-        case 'center':
-            var x = memeSize / 2;
-            break;
-        case 'left':
-            var x = 0.5;
-            break;
-        case 'right':
-            var x = memeSize - 5;
-            break;
-        default:
-            var x = memeSize / 2;;
+    if (gMeme.selectedImgId === 'custom') {
+        img.src = url;
+    } else {
+        img.src = gImgs[gMeme.selectedImgId].url;
     }
-    var y = 0;
+    img.onload = function () {
 
-    wrapText(ctx, text1, x, y, 300, 28, false);
+        // console.log('img:', img);
+        gCanvas = document.getElementById('memecanvas');
+        var ctx = gCanvas.getContext('2d');
+        gCanvas.width = memeSize;
+        gCanvas.height = memeSize;
+        var topText = document.getElementById('top-text');
+        var bottomText = document.getElementById('bottom-text');
+        ctx.clearRect(0, 0, gCanvas.width, gCanvas.height);
 
-    ctx.textBaseline = 'bottom';
-    var text2 = document.getElementById('bottom-text').value;
-    text2 = text2.toUpperCase();
-    y = memeSize;
+        ctx.drawImage(img, 0, 0, memeSize, memeSize);
 
-    wrapText(ctx, text2, x, y, 300, 28, true);
+        ctx.lineWidth = 4;
+        ctx.font = gMeme.txts[0].size + 'pt sans-serif';
+        ctx.strokeStyle = 'black';
+        ctx.fillStyle = gMeme.txts[0].color;
+        ctx.textAlign = gMeme.txts[0].align;
+        ctx.textBaseline = 'top';
 
+        var text1 = document.getElementById('top-text').value;
+        text1 = text1.toUpperCase();
+        switch (gMeme.txts[0].align) {
+            case 'center':
+                var x = memeSize / 2;
+                break;
+            case 'left':
+                var x = 0.5;
+                break;
+            case 'right':
+                var x = memeSize - 5;
+                break;
+            default:
+                var x = memeSize / 2;;
+        }
+        var y = 0;
+
+        wrapText(ctx, text1, x, y, 300, 28, false);
+
+        ctx.textBaseline = 'bottom';
+        var text2 = document.getElementById('bottom-text').value;
+        text2 = text2.toUpperCase();
+        y = memeSize;
+
+        wrapText(ctx, text2, x, y, 300, 28, true);
+
+    }
 }
 
 function wrapText(context, text, x, y, maxWidth, lineHeight, fromBottom) {
@@ -237,7 +245,7 @@ function filterContatins(val) {
     var filteredImgs = [];
     console.log('valll:', val);
     //reset filter query
-    if (val){
+    if (val) {
 
         if (val !== 'reset') {
             gImgs.forEach(function (element, idx) {
@@ -254,7 +262,7 @@ function filterContatins(val) {
             document.getElementById('filter').placeholder = 'Enter filter keyword';
             document.getElementById('filter').value = '';
             renderMemes(gImgs);
-            
+
             var elMemes = document.getElementById('memes');
             var elAbout = document.getElementById('about');
             var elContact = document.getElementById('contact');
@@ -265,9 +273,9 @@ function filterContatins(val) {
             elContact.style.display = '';
             return;
             /////
-        } 
-} else {
-            // if (val === undefined) {
+        }
+    } else {
+        // if (val === undefined) {
         console.log('val', val);
         //validation empty query
         var keywords = document.getElementById('filter').value;
@@ -328,6 +336,18 @@ function renderCommon() {
     document.querySelector('.most-common').innerHTML = str;
 }
 
+function addImgUrl(url) {
+    var elMemes = document.getElementById('memes');
+    var elAbout = document.getElementById('about');
+    var elContact = document.getElementById('contact');
+    var elCanvas = document.querySelector('.canvas-container');
+    elCanvas.style.display = '';
+    elMemes.style.display = 'none';
+    elAbout.style.display = 'none';
+    elContact.style.display = 'none';
+    gMeme.selectedImgId = 'custom';
+    drawMeme(url);
+}
 
 function increaseFontSize() {
     gMeme.txts[0].size++;
