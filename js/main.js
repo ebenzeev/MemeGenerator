@@ -132,19 +132,28 @@ function drawMeme(url) {
         ctx.strokeStyle = 'black';
         ctx.textBaseline = 'top';
         for (var i = 0; i < gMeme.txts.length; i++) {
-            var txt = document.getElementById('top-text-'+i);
+            var txt = document.getElementById('top-text-' + i);
             txt.addEventListener('keydown', drawMeme);
             txt.addEventListener('keyup', drawMeme);
             txt.addEventListener('change', drawMeme);
             ctx.font = gMeme.txts[i].size + 'pt sans-serif';
             ctx.fillStyle = gMeme.txts[i].color;
             ctx.textAlign = gMeme.txts[i].align;
-            document.querySelector('.font-color-'+i+'').value = gMeme.txts[i].color;
+            if (gMeme.txts[i].shadow === true) {
+                ctx.shadowOffsetX = 2;
+                ctx.shadowOffsetY = 2;
+                ctx.shadowColor = '#808080';
+            } else{
+                ctx.shadowOffsetX = 0;
+                ctx.shadowOffsetY = 0;
+                ctx.shadowColor = '#808080'; 
+            }
+            document.querySelector('.font-color-' + i + '').value = gMeme.txts[i].color;
             var text1 = document.getElementById('top-text-' + i).value;
             gMeme.txts[i].line = text1;
             text1 = text1.toUpperCase();
-            EventListner(text1,i);
-            var y = 50*i;
+            EventListner(text1, i);
+            var y = 50 * i;
             switch (gMeme.txts[i].align) {
                 case 'center':
                     var x = memeSize / 2;
@@ -162,8 +171,8 @@ function drawMeme(url) {
             wrapText(ctx, text1, x, y, 300, 28, false);
         }
 
-        function EventListner(txt,idx){
-            var txt = document.getElementById('top-text-'+idx);
+        function EventListner(txt, idx) {
+            var txt = document.getElementById('top-text-' + idx);
             txt.addEventListener('keydown', drawMeme);
             txt.addEventListener('keyup', drawMeme);
             txt.addEventListener('change', drawMeme);
@@ -325,22 +334,57 @@ function alignCenter(Idx) {
     drawMeme();
 }
 
-function fontColor(elInput , Idx) {
+function fontColor(elInput, Idx) {
     gMeme.txts[Idx].color = elInput.value;
     drawMeme();
 }
 
+function addShadow(Idx,el,isShadow){
+    if (isShadow === true) {
+        gMeme.txts[Idx].shadow = false;
+        isShadow = false;
+        // el.onclick = 'addShadow('+Idx+',this,false)';
+        // el.classList.remove = '<i class="fas fa-moon"></i>'
+        renderEditBox(isShadow);
+        drawMeme();
+    }else{
+        gMeme.txts[Idx].shadow = true;
+        isShadow = true;
+        // el.onclick = 'addShadow('+Idx+',this,true)';
+        // el.innerHTML = '<i class="far fa-moon"></i>';
+        renderEditBox(isShadow);
+        drawMeme();
+    }
+
+}
+
+function delBox(Idx){
+    gMeme.txts.splice(Idx,1);
+    renderEditBox();
+}
+
+
 function createEditBox() {
-    var emptyTxtObj = { line: 'Your Meme', size: 20, align: 'center', color: '#000000' };
+    var emptyTxtObj = { line: 'Your Meme', size: 20, align: 'center', color: '#000000', shadow: false };
     gMeme.txts.push(emptyTxtObj)
-    // var boxIdx = gMeme.txts.length;
+    renderEditBox();
+}
+
+function renderEditBox(isShadow){
     var str = '';
+    (isShadow === undefined)? isShadow = false : isShadow = isShadow;
     for (var i = 0; i < gMeme.txts.length; i++) {
         str += `<div class="canvas-inputs flex flex-column">
         <input type='text' value='${gMeme.txts[i].line}' id='top-text-${i}' />
         <div class="inputs-buttons">
-        <button>
+        <button onclick="delBox(${i})">
         <i class="fas fa-trash-alt"></i>
+        </button>
+        <button onclick="createEditBox()">
+        <i class="fas fa-cart-plus"></i>
+        </button>
+        <button onclick="addShadow(${i},this,${isShadow})">
+        <i class="fas fa-sun"></i>
         </button>
         <button onclick="selectFont(${i})">
         <i class="fas fa-font"></i>
