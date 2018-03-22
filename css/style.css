@@ -150,6 +150,10 @@ header img{
     color: white;
 }
 
+.search-input{
+    margin: 0px 10px;
+}
+
 .most-common{
     width: 100%;
     font-family: lato-regular;
@@ -330,6 +334,10 @@ canvas{
 
 .canvas-inputs{
 
+}
+
+#download{
+    padding: 10px;
 }
 
 /* css for avout section */
