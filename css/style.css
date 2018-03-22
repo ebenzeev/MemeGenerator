@@ -323,7 +323,8 @@ footer p {
     margin: 0;
 }
 
-.canvas-container{
+.canvas-container a{
+
 }
 
 canvas{
@@ -337,7 +338,10 @@ canvas{
 }
 
 #download{
+    margin: 15px;
     padding: 10px;
+    background-color: #20816d;
+    cursor: pointer;
 }
 
 /* css for avout section */

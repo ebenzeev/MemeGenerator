@@ -25,9 +25,10 @@ function updateForCanvas(){
 }
 
 function moveUp(){
-
+    console.log("up");
 }
 
 function moveDown(){
-    
+    console.log("down");
+
 }
