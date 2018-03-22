@@ -84,6 +84,7 @@ function init() {
     // var c = document.querySelector('.canvas');
     // c.classList.add('display-none');
     //rendering imgs grid
+    renderCommon();
     var elCanvas = document.querySelector('.canvas-container');
     elCanvas.style.display = 'none';
     renderMemes(gImgs);
@@ -318,7 +319,7 @@ function renderCommon() {
     var commonMap = mostCommon();
     var commonItems = Object.keys(commonMap);
     //mult for increasing font size based on times the keyword is shown.
-    var mult = 5;
+    var mult = 16;
     var str = '';
     for (var i = 0; i < commonItems.length; i++) {
         str += `<p class="common" style= "font-size: ${commonMap[commonItems[i]] * mult}px" onclick="filterContatins('${commonItems[i]}')"> ${commonItems[i]} </p>
