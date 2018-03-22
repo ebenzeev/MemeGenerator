@@ -35,7 +35,15 @@
     </header>
 
     <main>
+        <div class="main-url-cont">
+            <div class="url-cont flex justify-center">
 
+                <input type="text" class="url-input" id="url" placeholder="Enter Image URL From The Internet">
+                <div class="search-btn-cont flex justify-center justify-around">
+                    <button type="button" class="url-btn" onclick="addImgUrl()"> Send URL</button>
+                </div>
+            </div>
+        </div>
         <hr class="hr1">
 
         <div class="filter flex flex-column align-item-center">
@@ -73,9 +81,13 @@
             <div class="flex align-item-center flex-column">
                 <div id="edit-box" class="canvas-inputs flex flex-column justify-center">
                 </div>
+                <a id="add-text" onclick="createEditBox()" download="exported-data.png">
+                    Add Text
+                </a>
                 <a id="download" onclick="saveImage(this)" download="exported-data.png">
                     Download
                 </a>
+
             </div>
 
         </div>

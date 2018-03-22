@@ -296,17 +296,12 @@ function renderCommon() {
     document.querySelector('.most-common').innerHTML = str;
 }
 
-function addImgUrl(url) {
-    var elMemes = document.getElementById('memes');
-    var elAbout = document.getElementById('about');
-    var elContact = document.getElementById('contact');
-    var elCanvas = document.querySelector('.canvas-container');
-    elCanvas.style.display = '';
-    elMemes.style.display = 'none';
-    elAbout.style.display = 'none';
-    elContact.style.display = 'none';
+function addImgUrl() {
+    console.log("addImgUrl works");
+    var elURL = document.getElementById('url').value;
+    updateForCanvas();
     gMeme.selectedImgId = 'custom';
-    drawMeme(url);
+    drawMeme(elURL);
 }
 
 function increaseFontSize(Idx) {
@@ -365,7 +360,7 @@ function delBox(Idx){
 
 
 function createEditBox() {
-    var emptyTxtObj = { line: 'Your Meme', size: 20, align: 'center', color: '#000000', shadow: false };
+    var emptyTxtObj = { line: 'Your Meme', size: 20, align: 'center', color: '#FFFFFF', shadow: false };
     gMeme.txts.push(emptyTxtObj)
     renderEditBox();
 }
@@ -379,9 +374,6 @@ function renderEditBox(isShadow){
         <div class="inputs-buttons">
         <button onclick="delBox(${i})">
         <i class="fas fa-trash-alt"></i>
-        </button>
-        <button onclick="createEditBox()">
-        <i class="fas fa-cart-plus"></i>
         </button>
         <button onclick="addShadow(${i},this,${isShadow})">
         <i class="fas fa-sun"></i>

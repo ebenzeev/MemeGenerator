@@ -1,6 +1,6 @@
 /* HELPERS */
 
-.container{
+.container {
     width: 780px;
     margin: 0 auto 60px auto;
 }
@@ -9,13 +9,12 @@
     display: flex;
 }
 
-.flex-column{
+.flex-column {
     flex-direction: column;
 }
 
-.flex-wrap{
+.flex-wrap {
     flex-wrap: wrap;
-
 }
 
 .justify-center {
@@ -26,11 +25,11 @@
     justify-content: space-between;
 }
 
-.justify-around{
+.justify-around {
     justify-content: space-around;
 }
 
-.justify-evenly{
+.justify-evenly {
     justify-content: space-evenly;
 }
 
@@ -44,33 +43,31 @@
     padding: 0;
 }
 
-.display-none{
-    display:none;
+.display-none {
+    display: none;
 }
 
 .hidden {
-    visibility: hidden; 
+    visibility: hidden;
 }
 
-.filter > p > .display-none {
-    display:none;
+.filter>p>.display-none {
+    display: none;
 }
-
-
 
 /* FONTS */
 
-@font-face{
+@font-face {
     font-family: lato-regular;
     src: url("../fonts/lato/Lato-Regular.ttf");
 }
 
-@font-face{
+@font-face {
     font-family: lato-bold;
     src: url("../fonts/lato/Lato-Bold.ttf");
 }
 
-@font-face{
+@font-face {
     font-family: marvenpro-regular;
     src: url("../fonts/maven-pro/MavenPro-Regular.ttf");
 }
@@ -84,7 +81,6 @@
 body {
     margin: 0;
     overflow-y: scroll;
-
 }
 
 header {
@@ -96,7 +92,7 @@ header {
     font-size: 16px;
 }
 
-header img{
+header img {
     height: 63px;
 }
 
@@ -106,67 +102,87 @@ header img{
     margin: 0 10px;
 }
 
-.nav-ul>li>a:hover{
+.nav-ul>li>a:hover {
     color: #2eb398;
 }
 
-.hr1{
-    border: 2px solid #e4e9eb;
-    width: 85%;
-    margin: 30px auto 30px;
+.main-url-cont{
 }
 
-.filter{
-    width: 85%;
-    margin: 0 auto;
-}
-
-.search-cont{
+.url-cont {
     width: 370px;
-
+    margin: 0px auto;
 }
 
-.search-cont>*{
-    margin: 10px 0 20px 0;
-}
-
-.search-cont button{
+.url-cont button {
     background-color: #2eb398;
     border: #323232 2px solid;
     padding: 5px 10px;
 }
 
-.search-cont input[type=text]{
+.url-cont input[type=text] {
     border: none;
     background-color: #2eb398;
     color: white;
     padding: 12px 20px;
     width: 300px;
     border-radius: 10px;
+}
 
+.hr1 {
+    border: 2px solid #e4e9eb;
+    width: 85%;
+    margin: 30px auto 30px;
+}
+
+.filter {
+    width: 85%;
+    margin: 0 auto;
+}
+
+.search-cont {
+    width: 370px;
+}
+
+.search-cont>* {
+    margin: 10px 0 20px 0;
+}
+
+.search-cont button {
+    background-color: #2eb398;
+    border: #323232 2px solid;
+    padding: 5px 10px;
+}
+
+.search-cont input[type=text] {
+    border: none;
+    background-color: #2eb398;
+    color: white;
+    padding: 12px 20px;
+    width: 300px;
+    border-radius: 10px;
 }
 
 .search-cont ::placeholder {
     color: white;
 }
 
-.search-input{
+.search-input {
     margin: 0px 10px;
 }
 
-.most-common{
+.most-common {
     width: 100%;
     font-family: lato-regular;
 }
 
-.most-common p{
+.most-common p {
     margin: 0 5px;
 }
 
-.most-common p:hover{
+.most-common p:hover {
     cursor: pointer;
 }
-
 
 .memes {}
 
@@ -196,30 +212,29 @@ header img{
     background-color: #2eb398;
 }
 
-.about-container{
+.about-container {
     margin-top: 30px;
     margin-bottom: 30px;
     width: 85%;
 }
 
-.person{
-}
+.person {}
 
-.profile-content-cont{
+.profile-content-cont {
     width: 60%;
     position: relative;
 }
 
-.profile-content-cont *{
+.profile-content-cont * {
     margin-top: 0;
     margin-bottom: 0;
 }
 
-.profile-content-cont p{
+.profile-content-cont p {
     margin-top: 20px;
 }
 
-.social-icons{
+.social-icons {
     right: 0;
     bottom: 0;
     position: absolute;
@@ -231,22 +246,23 @@ header img{
     color: white;
 }
 
-.social-icons #facebook{
-        background-color: #3b5998;
-}
-.social-icons #github{
-        background-color: #333;
-}
-.social-icons #linkedin{
-        background-color: #0077b5;
-}
-.social-icons #twitter{
-        background-color: #1da1f2;
+.social-icons #facebook {
+    background-color: #3b5998;
 }
 
-.profile-img-cont {
-
+.social-icons #github {
+    background-color: #333;
 }
+
+.social-icons #linkedin {
+    background-color: #0077b5;
+}
+
+.social-icons #twitter {
+    background-color: #1da1f2;
+}
+
+.profile-img-cont {}
 
 .profile-img-cont img {
     width: 250px;
@@ -260,37 +276,34 @@ header img{
     height: 564px;
     background-color: #323232;
     color: #e0e0e0;
-
 }
 
-.contact-head{
+.contact-head {
     font-family: marvenpro-regular;
 }
 
-.contact-head .p1{
+.contact-head .p1 {
     font-size: 22px;
 }
-.contact-head .p2{
+
+.contact-head .p2 {
     font-size: 18px;
 }
 
-.contact-container{
+.contact-container {
     width: 780px;
     margin-top: 40px;
     margin-bottom: 40px;
     font-family: lato-regular;
 }
 
-.contact-content{
+.contact-content {}
 
-}
-
-
-.contact-form{
+.contact-form {
     width: 60%;
 }
 
-.contact-form input{
+.contact-form input {
     background-color: #454545;
     width: 100%;
     padding: 5px;
@@ -298,18 +311,18 @@ header img{
     border: none;
 }
 
-.contact-form ::placeholder{
+.contact-form ::placeholder {
     color: #bebebe;
     font-size: 12px;
 }
 
-.contact-info{
+.contact-info {
     width: 180px;
     font-family: lato-regular;
     font-size: 12px;
 }
 
-.contact-info div{
+.contact-info div {
     font-family: lato-bold;
 }
 
@@ -323,26 +336,22 @@ footer p {
     margin: 0;
 }
 
-.canvas-container a{
-
-}
-
-canvas{
-    border: 1px solid black;
-    height: 50%;
-    width: 50%;
-}
-
-.canvas-inputs{
-
-}
-
-#download{
+.canvas-container a {
     margin: 15px;
     padding: 10px;
     background-color: #20816d;
     cursor: pointer;
 }
+
+canvas {
+    border: 1px solid black;
+    height: 50%;
+    width: 50%;
+}
+
+.canvas-inputs a {}
+
+#download {}
 
 /* css for avout section */
 
@@ -352,51 +361,46 @@ canvas{
 
 } */
 
-
-.img-container{
+.img-container {
     background-size: cover;
     background-position: center;
-    height:220px;
-    width:180px;
+    height: 220px;
+    width: 180px;
 }
 
-.member{
-    padding-top:68px;
+.member {
+    padding-top: 68px;
 }
 
-.memeber-details{
+.memeber-details {
     width: 580px;
 }
-.memeber-details > h1, h3, p{
+
+.memeber-details>h1,
+h3,
+p {
     margin: 0;
 }
 
-div > h1 {
+div>h1 {
     color: #d7fcf5;
     font-family: "Maven Pro Regular";
     font-size: 30px;
     margin: 0 0 8px 0;
 }
 
-div > h3 {
+div>h3 {
     color: #20816d;
     font-family: "Maven Pro Regular";
     font-size: 18px;
 }
-.memeber-details > p {
+
+.memeber-details>p {
     color: #d7fcf5;
     font-family: Lato;
     font-size: 12px;
     margin-bottom: 30px;
 }
-
-
-
-
-
-
-
-
 
 @media (max-width: 1000px) {
     .meme-gallary {
