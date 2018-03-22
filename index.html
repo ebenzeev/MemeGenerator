@@ -35,14 +35,14 @@
     </header>
 
     <main>
-        
+
         <hr class="hr1">
-        
-        <div class="filter flex justify-center">
+
+        <div class="filter flex flex-column align-item-center">
             <div class="search-cont flex flex-column justify-around">
-                
+
                 <div class="flex justify-center justify-between">
-                    
+
                     <input type="text" class="search-input" id="filter" placeholder="Enter filter keyword" onkeyup="filterContatins()">
                     <div class="search-btn-cont flex justify-center justify-around">
                         <!-- <button type="submit" class="search-btn" onclick="filterContatins()"> Filter</button> -->
@@ -52,9 +52,10 @@
                 <p class="filter-result hidden">Filter Results:
                     <span class="filterd"></span>
                 </p>
+
             </div>
-            <div class="most-common">
-                
+            <div class="most-common flex flex-wrap justify-evenly align-item-center">
+
             </div>
         </div>
         <div class="memes flex justify-center" id="memes">

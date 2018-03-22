@@ -13,6 +13,11 @@
     flex-direction: column;
 }
 
+.flex-wrap{
+    flex-wrap: wrap;
+
+}
+
 .justify-center {
     justify-content: center;
 }
@@ -23,6 +28,10 @@
 
 .justify-around{
     justify-content: space-around;
+}
+
+.justify-evenly{
+    justify-content: space-evenly;
 }
 
 .align-item-center {
@@ -107,6 +116,16 @@ header img{
     margin: 30px auto 30px;
 }
 
+.filter{
+    width: 85%;
+    margin: 0 auto;
+}
+
+.search-cont{
+    width: 370px;
+
+}
+
 .search-cont>*{
     margin: 10px 0 20px 0;
 }
@@ -130,6 +149,20 @@ header img{
 .search-cont ::placeholder {
     color: white;
 }
+
+.most-common{
+    width: 100%;
+    font-family: lato-regular;
+}
+
+.most-common p{
+    margin: 0 5px;
+}
+
+.most-common p:hover{
+    cursor: pointer;
+}
+
 
 .memes {}
 
