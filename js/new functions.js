@@ -23,3 +23,11 @@ function updateForCanvas(){
     var elContact = document.getElementById('contact');
     elContact.style.display = 'none';
 }
+
+function moveUp(){
+
+}
+
+function moveDown(){
+    
+}
