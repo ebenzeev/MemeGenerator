@@ -39,6 +39,10 @@
     display:none;
 }
 
+.hidden {
+    visibility: hidden; 
+}
+
 .filter > p > .display-none {
     display:none;
 }
@@ -111,6 +115,10 @@ header img{
     width: 300px;
     border-radius: 10px;
 
+}
+
+.search-input{
+    margin-right: 20px;
 }
 
 ::placeholder {

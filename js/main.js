@@ -234,10 +234,11 @@ function wrapText(context, text, x, y, maxWidth, lineHeight, fromBottom) {
 }
 
 function filterContatins(reset) {
+    
     //reset filter query
     if (reset === 'reset') {
         document.querySelector('.filterd').innerHTML = '';
-        document.querySelector('.filter-result').classList.add('display-none');
+        document.querySelector('.filter-result').classList.add('hidden');
         document.getElementById('filter').placeholder = 'Enter filter keyword';
         document.getElementById('filter').value = '';
         renderMemes(gImgs);
@@ -256,6 +257,7 @@ function filterContatins(reset) {
         var keywords = document.getElementById('filter').value;
         if (keywords === '' || keywords === undefined) {
             renderMemes(gImgs);
+            document.querySelector('.filter-result').classList.add('hidden');
             return;
         } else {
             //creating an array from the string
@@ -268,7 +270,7 @@ function filterContatins(reset) {
                 })
             }
             //telling the user for the results of the query
-            document.querySelector('.filter-result').classList.remove('display-none');
+            document.querySelector('.filter-result').classList.remove('hidden');
             document.querySelector('.filterd').innerHTML = filteredImgs.length + ' images were found';
             //in-case of no results found
             if (filteredImgs.length === 0) {

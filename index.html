@@ -40,16 +40,18 @@
 
         <div class="filter flex justify-center">
             <div class="search-cont flex flex-column justify-around">
-                <p class="filter-result display-none">Filter Results:
+                
+                <div class="flex justify-center justify-between">
+
+                    <input type="text" class="search-input" id="filter" placeholder="Enter filter keyword" onkeyup="filterContatins()">
+                    <div class="search-btn-cont flex justify-center justify-around">
+                        <!-- <button type="submit" class="search-btn" onclick="filterContatins()"> Filter</button> -->
+                        <button type="submit" class="search-btn" onclick="filterContatins('reset')"> Reset</button>
+                    </div>
+                </div>
+                <p class="filter-result hidden">Filter Results:
                     <span class="filterd"></span>
                 </p>
-
-
-                <input type="text" class="search-input" id="filter" placeholder="Enter filter keyword">
-                <div class="search-btn-cont flex justify-center justify-around">
-                    <button type="submit" class="search-btn" onclick="filterContatins()"> Filter</button>
-                    <button type="submit" class="search-btn" onclick="filterContatins('reset')"> Reset</button>
-                </div>
             </div>
         </div>
         <div class="memes flex justify-center" id="memes">
