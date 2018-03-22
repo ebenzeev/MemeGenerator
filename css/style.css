@@ -39,6 +39,10 @@
     display:none;
 }
 
+.hidden {
+    visibility: hidden; 
+}
+
 .filter > p > .display-none {
     display:none;
 }

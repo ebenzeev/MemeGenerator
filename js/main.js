@@ -209,7 +209,7 @@ function drawMeme() {
 
 function wrapText(context, text, x, y, maxWidth, lineHeight, fromBottom) {
     var pushMethod = (fromBottom) ? 'unshift' : 'push';
-    lineHeight = (fromBottom) ? -lineHeight*1.2 : lineHeight*1.2;
+    lineHeight = (fromBottom) ? -lineHeight * 1.2 : lineHeight * 1.2;
     var lines = [];
     var y = y;
     var line = '';
@@ -233,34 +233,51 @@ function wrapText(context, text, x, y, maxWidth, lineHeight, fromBottom) {
     }
 }
 
-function filterContatins(reset) {
+function filterContatins(val) {
+    var filteredImgs = [];
+    console.log('valll:', val);
     //reset filter query
-    if (reset === 'reset') {
-        document.querySelector('.filterd').innerHTML = '';
-        document.querySelector('.filter-result').classList.add('display-none');
-        document.getElementById('filter').placeholder = 'Enter filter keyword';
-        document.getElementById('filter').value = '';
-        renderMemes(gImgs);
+    if (val){
 
-        var elMemes = document.getElementById('memes');
-        var elAbout = document.getElementById('about');
-        var elContact = document.getElementById('contact');
-        var elCanvas = document.querySelector('.canvas-container');
-        elCanvas.style.display = 'none';
-        elMemes.style.display = '';
-        elAbout.style.display = '';
-        elContact.style.display = '';
-        /////
-    } else {
+        if (val !== 'reset') {
+            gImgs.forEach(function (element, idx) {
+                if (element.keywords.includes(val)) filteredImgs.push(gImgs[idx]);
+            })
+            renderMemes(filteredImgs);
+            document.querySelector('.filter-result').classList.remove('hidden');
+            document.querySelector('.filterd').innerHTML = filteredImgs.length + ' images were found';
+            return;
+        }
+        if (val === 'reset') {
+            document.querySelector('.filterd').innerHTML = '';
+            document.querySelector('.filter-result').classList.add('hidden');
+            document.getElementById('filter').placeholder = 'Enter filter keyword';
+            document.getElementById('filter').value = '';
+            renderMemes(gImgs);
+            
+            var elMemes = document.getElementById('memes');
+            var elAbout = document.getElementById('about');
+            var elContact = document.getElementById('contact');
+            var elCanvas = document.querySelector('.canvas-container');
+            elCanvas.style.display = 'none';
+            elMemes.style.display = '';
+            elAbout.style.display = '';
+            elContact.style.display = '';
+            return;
+            /////
+        } 
+} else {
+            // if (val === undefined) {
+        console.log('val', val);
         //validation empty query
         var keywords = document.getElementById('filter').value;
         if (keywords === '' || keywords === undefined) {
             renderMemes(gImgs);
+            document.querySelector('.filter-result').classList.add('hidden');
             return;
         } else {
             //creating an array from the string
             keywords = keywords.split(' ');
-            var filteredImgs = [];
             for (var i = 0; i < keywords.length; i++) {
                 var keyword = keywords[i].toLowerCase();
                 gImgs.forEach(function (element, idx) {
@@ -268,7 +285,7 @@ function filterContatins(reset) {
                 })
             }
             //telling the user for the results of the query
-            document.querySelector('.filter-result').classList.remove('display-none');
+            document.querySelector('.filter-result').classList.remove('hidden');
             document.querySelector('.filterd').innerHTML = filteredImgs.length + ' images were found';
             //in-case of no results found
             if (filteredImgs.length === 0) {
@@ -278,6 +295,39 @@ function filterContatins(reset) {
         renderMemes(filteredImgs);
     }
 }
+
+function mostCommon() {
+    var allKeywords = [];
+    gImgs.forEach(function (obj) {
+        obj.keywords.forEach(function (arr) {
+            allKeywords.push(arr);
+        })
+    })
+    console.log('allkeywords:', allKeywords);
+    var commonMap = allKeywords.reduce(function (acc, key) {
+        if (key in acc) {
+            acc[key]++
+        } else acc[key] = 1;
+        return acc;
+    }, {})
+    console.log('allkeywords map:', commonMap);
+    return commonMap;
+}
+
+function renderCommon() {
+    var commonMap = mostCommon();
+    var commonItems = Object.keys(commonMap);
+    //mult for increasing font size based on times the keyword is shown.
+    var mult = 5;
+    var str = '';
+    for (var i = 0; i < commonItems.length; i++) {
+        str += `<p class="common" style= "font-size: ${commonMap[commonItems[i]] * mult}px" onclick="filterContatins('${commonItems[i]}')"> ${commonItems[i]} </p>
+        `
+    }
+    console.log('str:', str);
+    document.querySelector('.most-common').innerHTML = str;
+}
+
 
 function increaseFontSize() {
     gMeme.txts[0].size++;
@@ -304,7 +354,7 @@ function alignCenter() {
     drawMeme();
 }
 
-function fontColor(){
+function fontColor() {
     gMeme.txts[0].color = document.querySelector('.font-color').value;
     drawMeme();
 }
