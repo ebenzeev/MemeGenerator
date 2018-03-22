@@ -146,10 +146,14 @@ function drawMeme(url) {
             ctx.font = gMeme.txts[i].size + 'pt sans-serif';
             ctx.fillStyle = gMeme.txts[i].color;
             ctx.textAlign = gMeme.txts[i].align;
-            if (gMeme.txts[i].shadow) {
+            if (gMeme.txts[i].shadow === true) {
                 ctx.shadowOffsetX = 2;
                 ctx.shadowOffsetY = 2;
                 ctx.shadowColor = '#808080';
+            } else{
+                ctx.shadowOffsetX = 0;
+                ctx.shadowOffsetY = 0;
+                ctx.shadowColor = '#808080'; 
             }
             document.querySelector('.font-color-' + i + '').value = gMeme.txts[i].color;
             var text1 = document.getElementById('top-text-' + i).value;
@@ -349,12 +353,14 @@ function addShadow(Idx,el,isShadow){
         // el.onclick = 'addShadow('+Idx+',this,false)';
         // el.classList.remove = '<i class="fas fa-moon"></i>'
         renderEditBox(isShadow);
+        drawMeme();
     }else{
         gMeme.txts[Idx].shadow = true;
         isShadow = true;
         // el.onclick = 'addShadow('+Idx+',this,true)';
         // el.innerHTML = '<i class="far fa-moon"></i>';
         renderEditBox(isShadow);
+        drawMeme();
     }
 
 }
