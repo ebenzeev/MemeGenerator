@@ -48,8 +48,18 @@
 /* FONTS */
 
 @font-face{
+    font-family: lato-regular;
+    src: url("../fonts/lato/Lato-Regular.ttf");
+}
+
+@font-face{
     font-family: lato-bold;
-    src: url("../fonts/lato/Lato-Bold.ttf")
+    src: url("../fonts/lato/Lato-Bold.ttf");
+}
+
+@font-face{
+    font-family: marvenpro-regular;
+    src: url("../fonts/maven-pro/MavenPro-Regular.ttf");
 }
 
 /*  */
@@ -113,7 +123,7 @@ header img{
 
 }
 
-::placeholder {
+.search-cont ::placeholder {
     color: white;
 }
 
@@ -208,6 +218,58 @@ header img{
 .contact {
     height: 564px;
     background-color: #323232;
+    color: #e0e0e0;
+
+}
+
+.contact-head{
+    font-family: marvenpro-regular;
+}
+
+.contact-head .p1{
+    font-size: 22px;
+}
+.contact-head .p2{
+    font-size: 18px;
+}
+
+.contact-container{
+    width: 780px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-family: lato-regular;
+}
+
+.contact-content{
+
+}
+
+
+.contact-form{
+    width: 60%;
+}
+
+.contact-form input{
+    background-color: #454545;
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 20px;
+    border: none;
+}
+
+.contact-form ::placeholder{
+    color: #bebebe;
+    font-size: 12px;
+}
+
+.contact-info{
+    width: 180px;
+    font-family: lato-regular;
+    font-size: 12px;
+}
+
+.contact-info div{
+    font-family: lato-bold;
 }
 
 footer {
